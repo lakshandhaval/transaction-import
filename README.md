@@ -28,6 +28,27 @@ A Node.js and PostgreSQL API for importing transaction CSV files. It demonstrate
 
 Run validation tests with `npm test`.
 
+## Frontend
+
+The React frontend lives in `frontend/` and uses Vite. It has pages for uploading a CSV, browsing batches, approving a batch as a checker, and viewing audit logs.
+
+1. Start the backend in one terminal: `npm start`
+2. In a second terminal, run `cd frontend`, `npm install`, then `npm run dev`.
+3. Open the URL printed by Vite (normally `http://localhost:5173`).
+
+The frontend folder is intentionally small:
+
+```text
+frontend/
+  public/          Downloadable sample CSV
+  src/components/  Small shared UI pieces
+  src/context/     Demo maker/checker identity state
+  src/pages/       One component per page
+  src/api.js       Shared fetch helper
+```
+
+Vite proxies `/upload`, `/batches`, `/audit-logs`, and `/health` to the API at `http://localhost:3000`, so browser development requests avoid CORS issues. `api.js` adds the selected demo user's `x-user` header to every request; it is a UI demonstration and not real authentication.
+
 ## API
 
 All errors use `{ "error": "..." }`.
